@@ -1,26 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePacketDto } from './dto/create-packet.dto';
-import { UpdatePacketDto } from './dto/update-packet.dto';
+import { Body, Injectable, Param } from '@nestjs/common';
+import { CreateAutoDto, createHealthyDto } from './dto/create-packet.dto';
+
+import { InjectRepository } from '@nestjs/typeorm';
+import { AutoInsurancePolicyEntity} from './entities/auto-insurance.entity';
+import { Repository } from 'typeorm';
+import { HealthInsurancePolicy } from './entities/health-insurance.entity';
 
 @Injectable()
 export class PacketsService {
-  create(createPacketDto: CreatePacketDto) {
-    return 'This action adds a new packet';
+  constructor(@InjectRepository(AutoInsurancePolicyEntity) private autorepo: Repository<AutoInsurancePolicyEntity>,
+              @InjectRepository(HealthInsurancePolicy) private healthrepo: Repository<HealthInsurancePolicy> ) {}
+
+
+  create(@Body() body: CreateAutoDto) {
+    const autoins = this.autorepo.create(body);
+    return this.autorepo.save(autoins)
   }
 
-  findAll() {
-    return `This action returns all packets`;
+  createHealth(@Body() body: createHealthyDto) {
+    const health = this.healthrepo.create(body);
+    return this.healthrepo.save(health)
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} packet`;
+  findAuto (id: number) {
+    return this.autorepo.findBy({id})
   }
 
-  update(id: number, updatePacketDto: UpdatePacketDto) {
-    return `This action updates a #${id} packet`;
+  findAllAuto(policyNumber: number) {
+    return this.autorepo.find({where:{policyNumber}})
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} packet`;
-  }
 }

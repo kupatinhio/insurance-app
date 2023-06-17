@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query } from '@nestjs/common';
 import { PacketsService } from './packets.service';
-import { CreatePacketDto } from './dto/create-packet.dto';
-import { UpdatePacketDto } from './dto/update-packet.dto';
+import { CreateAutoDto } from './dto/create-packet.dto';
+import { createHealthyDto } from './dto/create-packet.dto';
+import { HealthInsurancePolicy } from './entities/health-insurance.entity';
+
 
 @Controller('packets')
 export class PacketsController {
   constructor(private readonly packetsService: PacketsService) {}
 
   @Post()
-  create(@Body() createPacketDto: CreatePacketDto) {
-    return this.packetsService.create(createPacketDto);
+  create(@Body() createAutoDto: CreateAutoDto) {
+    return this.packetsService.create(createAutoDto);
   }
 
+  @Get(`/:id`)
+  async findAuto(@Param('id',ParseIntPipe) id: number){
+    const auto = await this.packetsService.findAuto(id)
+    return auto
+  }
   @Get()
-  findAll() {
-    return this.packetsService.findAll();
+  findAllAuto (@Param('policyNumber') policyNumber: number ) {
+    return this.packetsService.findAllAuto(policyNumber)
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.packetsService.findOne(+id);
-  }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePacketDto: UpdatePacketDto) {
-    return this.packetsService.update(+id, updatePacketDto);
+  @Post('/health')
+  createHealth(@Body() createHealthyDto: createHealthyDto) {
+    return this.packetsService.createHealth(createHealthyDto)
   }
+  
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.packetsService.remove(+id);
-  }
+
+
 }

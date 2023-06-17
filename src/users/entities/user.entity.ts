@@ -11,5 +11,10 @@ export class UserEntity {
     @Column()
     password: string
 
+    @Column()
+    address: string
+    
+    @Column()
+    mobile: number
 
 }

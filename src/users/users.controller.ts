@@ -9,8 +9,11 @@ export class UsersController {
 
   @Post()
   create(@Body() body: CreateUserDto) {
-    return this.usersService.create(body.email, body.password);
+    return this.usersService.create(body);
   }
+
+
+
 
 
   @Get('/:id')
@@ -23,6 +26,11 @@ export class UsersController {
   findAllUsers(@Query('email') email:string){
     return this.usersService.findUsers(email)
   }
+  @Post()
+ findUsersByAdd(@Query(`address`) address:string){
+  return this.usersService.findByAddress(address)
+
+}
 
   @Delete('/:id')
   removeUser(@Param('id', ParseIntPipe) id:number){
