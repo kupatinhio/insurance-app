@@ -6,13 +6,15 @@ import { UsersModule } from './users/users.module';
 import { PacketsModule } from './packets/packets.module';
 import { CompaniesModule } from './companies/companies.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
+
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mariadb',
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '123123',
+    password: '1234',
     database: 'insuranceapp',
     entities: [__dirname+ '/**/entities/*.entity.{ts,js}'],
     namingStrategy: new SnakeNamingStrategy(),

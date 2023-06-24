@@ -16,5 +16,14 @@ export class createHealthyDto {
     endDate:number
 }
 
+export class createBusinessDto {
+    id: number
+    policyNumber: number
+    coverageDetails: string;
+    budinessInformation: string
+    startDate: number
+    endDate:number
+}
+
 
 

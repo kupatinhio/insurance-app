@@ -8,7 +8,7 @@ import { Query } from 'typeorm/driver/Query';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(UserEntity) private repo: Repository<UserEntity>,) {}
+  constructor(@InjectRepository(UserEntity) private repo: Repository<UserEntity>,) { }
 
   // create(email: string, password: string, address: string) {
   //   const user = this.repo.create({email,password,address});
@@ -17,24 +17,26 @@ export class UsersService {
   create(@Body() body: CreateUserDto) {
     const user = this.repo.create(body);
     return this.repo.save(user)
-  }  
+  }
 
   findOne(id: number) {
-    return this.repo.findOneBy({id})
+    return this.repo.findOneBy({ id })
   }
 
   findUsers(email: string) {
-    return this.repo.find({where:{email}})
+    return this.repo.find({ where: { email } })
   }
 
   async remove(id: number) {
     const user = await this.findOne(id)
     return this.repo.remove(user)
   }
-  
-  findByAddress(address:string){
-   return this.repo.find({where: {address}})
- 
- }
- 
+
+  findByAddress(address: string) {
+    return this.repo.find({ where: { address } })
+
+  }
+
+
+
 }

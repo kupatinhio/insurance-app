@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserEntity } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -10,10 +11,7 @@ export class UsersController {
   @Post()
   create(@Body() body: CreateUserDto) {
     return this.usersService.create(body);
-  }
-
-
-
+  } 
 
 
   @Get('/:id')
@@ -26,11 +24,6 @@ export class UsersController {
   findAllUsers(@Query('email') email:string){
     return this.usersService.findUsers(email)
   }
-  @Post()
- findUsersByAdd(@Query(`address`) address:string){
-  return this.usersService.findByAddress(address)
-
-}
 
   @Delete('/:id')
   removeUser(@Param('id', ParseIntPipe) id:number){
