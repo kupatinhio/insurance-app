@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { UserEntity } from 'src/users/entities/user.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 
 @Entity('auto')
-export class AutoInsurancePolicyEntity {
+export class Package {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,4 +20,7 @@ export class AutoInsurancePolicyEntity {
 
   @Column()
   endDate: number;
+
+  @ManyToMany(() => UserEntity, user => user.packages )
+  user: UserEntity
 }

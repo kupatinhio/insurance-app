@@ -1,16 +1,19 @@
 import { Body, Injectable, Param } from '@nestjs/common';
+<<<<<<< HEAD
 import { CreateAutoDto, createBusinessDto, createHealthyDto } from './dto/create-packet.dto';
+=======
+import { CreateAutoDto, createHealthyDto } from './dto/create-packet.dto';
+>>>>>>> f2813c1 (add purchese)
 import { InjectRepository } from '@nestjs/typeorm';
-import { AutoInsurancePolicyEntity} from './entities/auto-insurance.entity';
+import { Package} from './entities/auto-insurance.entity';
 import { Repository } from 'typeorm';
 import { HealthInsurancePolicy } from './entities/health-insurance.entity';
 import { BusinessInsurancePolicyEntity } from './entities/business-insurance.entity';
 
 @Injectable()
 export class PacketsService {
-  constructor(@InjectRepository(AutoInsurancePolicyEntity) private autorepo: Repository<AutoInsurancePolicyEntity>,
-              @InjectRepository(HealthInsurancePolicy) private healthrepo: Repository<HealthInsurancePolicy>, 
-              @InjectRepository(BusinessInsurancePolicyEntity) private businessrepo: Repository<BusinessInsurancePolicyEntity>) {}
+  constructor(@InjectRepository(Package) private autorepo: Repository<Package>,
+              @InjectRepository(HealthInsurancePolicy) private healthrepo: Repository<HealthInsurancePolicy> ) {}
 
 
   create(@Body() body: CreateAutoDto) {
