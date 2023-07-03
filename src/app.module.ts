@@ -3,15 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { PacketsModule } from './packets/packets.module';
+import { PacketsModule } from './packages/packets.module';
 import { CompaniesModule } from './companies/companies.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-<<<<<<< HEAD
-
-
-=======
 import { PurchaseModule } from './purchase/purchase.module';
->>>>>>> f2813c1 (add purchese)
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',

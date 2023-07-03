@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from 'src/users/entities/user.entity';
-import { Package } from 'src/packets/entities/auto-insurance.entity';
+import { InsuranceEntity } from 'src/packages/entities/insurance.entity';
 
 
 @Injectable()
@@ -11,8 +11,8 @@ export class PurchaseService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-    @InjectRepository(Package)
-    private readonly packageRepository: Repository<Package>,
+    @InjectRepository(InsuranceEntity)
+    private readonly packageRepository: Repository<InsuranceEntity>,
   ) {}
 
   async purchasePackage(userId: number, packageId: number) {

@@ -1,4 +1,4 @@
-import { Package } from "src/packets/entities/auto-insurance.entity";
+import { InsuranceEntity } from "src/packages/entities/insurance.entity";
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity('users')
@@ -18,10 +18,10 @@ export class UserEntity {
     @Column()
     mobile: number
 
-    @ManyToMany(() => Package, packages => packages.user)
+    @ManyToMany(() => InsuranceEntity, packages => packages.user)
     @JoinTable({
         name: 'user_packagessss'
     })
-    packages: Package[];
+    packages: InsuranceEntity[];
 
 }

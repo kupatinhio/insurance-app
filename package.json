@@ -25,13 +25,9 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^10.0.0",
+    "hbs": "^4.2.0",
     "mariadb": "^3.1.2",
-<<<<<<< HEAD
     "mysql2": "^3.4.0",
-=======
-    "mysql": "^2.18.1",
-    "pg": "^8.11.0",
->>>>>>> f2813c1 (add purchese)
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.17",
